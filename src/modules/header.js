@@ -1,9 +1,9 @@
-import Logo from "../images/logo.png";
+import Logo from '../images/logo.png';
 
-const header = document.querySelector("header");
+const header = document.querySelector('header');
 
 export default () => {
-  let headerCode = "";
+  let headerCode = '';
   headerCode += `
     <img class="logo" src="${Logo}" alt="logo" />
     <nav>

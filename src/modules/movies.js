@@ -1,10 +1,11 @@
-const movies = document.querySelector(".content");
-const moviesEndPoint = "https://api.tvmaze.com/shows";
+const movies = document.querySelector('.content');
+const moviesEndPoint = 'https://api.tvmaze.com/shows';
 
 export default async () => {
   const response = await fetch(moviesEndPoint);
   const data = await response.json();
-  let moviesCode = "";
+  let moviesCode = '';
+  /* eslint-disable */
   for (const [index, movie] of data.entries()) {
     const { id, image, name } = movie;
     if (index >= 8) {
@@ -24,9 +25,10 @@ export default async () => {
     </div>
     `;
   }
+  /* eslint-enable */
   movies.innerHTML = moviesCode;
 };
 
-window.showPopup = (id) => {
-    document.querySelector('.popup').style.display = 'block';
-}
+window.showPopup = () => {
+  document.querySelector('.popup').style.display = 'block';
+};
