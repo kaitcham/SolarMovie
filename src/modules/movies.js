@@ -1,16 +1,12 @@
-const movies = document.querySelector(".content");
-const popupSection = document.querySelector(".popup-section");
-const popup = document.querySelector(".popup");
-const title = document.querySelector(".title");
-const addcomment = document.querySelector(".addcomment");
-const description = document.querySelector(".description");
-const listComment = document.querySelector(".list-comment");
-const moviesEndPoint = "https://api.tvmaze.com/shows";
+const movies = document.querySelector('.content');
+const popupSection = document.querySelector('.popup-section');
+const popup = document.querySelector('.popup');
+const moviesEndPoint = 'https://api.tvmaze.com/shows';
 
 export default async () => {
   const response = await fetch(moviesEndPoint);
   const data = await response.json();
-  let moviesCode = "";
+  let moviesCode = '';
   /* eslint-disable */
   for (const [index, movie] of data.entries()) {
     const { id, image, name } = movie;
@@ -35,7 +31,7 @@ export default async () => {
   movies.innerHTML = moviesCode;
 };
 const listComments = (comments, commentWrapper) => {
-  commentWrapper.innerHTML = "";
+  commentWrapper.innerHTML = '';
   comments.forEach((comment) => {
     commentWrapper.innerHTML += `<div>${comment.username}</div>
     <div>${comment.comment}</div>
@@ -43,12 +39,12 @@ const listComments = (comments, commentWrapper) => {
   });
 };
 window.showPopup = async (id) => {
-  popupSection.style.display = "flex";
+  popupSection.style.display = 'flex';
   const response = await fetch(moviesEndPoint);
   const data = await response.json();
   const movie = data.filter((movie) => movie.id === id);
-  const { name, image, title, form, description } = movie[0];
-  let popupCode = "";
+  const { name, image, description } = movie[0];
+  let popupCode = '';
   popupCode += `
     <div class="popup-image">
         <img src="${image.original}" alt="${name}" />
@@ -74,20 +70,20 @@ window.showPopup = async (id) => {
         </div>
   `;
   popup.innerHTML = popupCode;
-  const input = document.querySelector("#username");
-  const textarea = document.querySelector("#comment");
-  const submitcomment = document.querySelector(".submit-comment");
-  const commentWrapper = document.querySelector(".commentWrapper");
-  console.log(submitcomment);
-  submitcomment.addEventListener("submit", async (e) => {
+  const input = document.querySelector('#username');
+  const textarea = document.querySelector('#comment');
+  const submitcomment = document.querySelector('.submit-comment');
+  const commentWrapper = document.querySelector('.commentWrapper');
+  submitcomment.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = {
       item_id: id,
       username: input.value,
       comment: textarea.value,
     };
+    /* eslint-disable */
     const result = await fetch(
-      `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/OpoqWzBnwFb3zVn24crK/comments`,
+      "https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/OpoqWzBnwFb3zVn24crK/comments",
       {
         method: "POST",
         headers: {
@@ -97,17 +93,12 @@ window.showPopup = async (id) => {
         body: JSON.stringify(data),
       }
     );
-    console.log("result", result);
-    console.log(data);
+    /* eslint-enable */
     const response = await fetch(
-      `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/OpoqWzBnwFb3zVn24crK/comments?item_id=${id}`
+      `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/OpoqWzBnwFb3zVn24crK/comments?item_id=${id}`,
     );
 
     const comments = await response.json();
-    console.log(comments);
     listComments(comments, commentWrapper);
   });
-
-  console.log(input);
-  console.log(textarea);
 };
