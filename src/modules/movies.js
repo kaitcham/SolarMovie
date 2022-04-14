@@ -59,7 +59,6 @@ window.showPopup = async (id) => {
     </div>
     <div class="title">
     <h2>${name}</h2>
-    ${summary}
   </div>
   </div>
   <div class="top-comment">
