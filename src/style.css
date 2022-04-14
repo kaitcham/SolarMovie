@@ -123,14 +123,23 @@ header {
 .add-comment {
   width: 40%;
   text-align: start;
-  display: grid;
   flex-direction: column;
   justify-content: start;
   padding: 15px;
+  margin-left: 12px;
 }
 
 .add-comment h1 {
   margin: 14px auto;
+}
+
+input,
+textarea {
+  width: 170%;
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  color: #080808;
+  margin-bottom: 0.5rem;
 }
 
 .add-comment input {
@@ -150,13 +159,38 @@ header {
 }
 
 .commentWrapper {
+  display: block;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+   text-align: start;
+   margin: 10px;
+}
+
+.comment-title {
   text-align: center;
-  display: flex;
-  font-family: 'Times New Roman', Times, serif;
-  margin: 4px;
-  position: relative;
+  color: #f8f8f8;
+}
+
+.comments-list {
+  margin: 10px auto;
+  padding-left: 1.3rem;
 }
 
 .top-comment {
   text-align: center;
+}
+
+.close-popup {
+  text-align: end;
+}
+
+.close-popup button {
+  border: none;
+  outline:none;
+  background: none;
+  font-size: 45px;
+  font-weight: bold;
 }
